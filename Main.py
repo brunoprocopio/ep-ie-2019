@@ -28,6 +28,7 @@ def probabilidadeAcertoAlunoJQuestaoI(questao,aluno):
     return probAcerto
 
 
+
 tetaDoAluno = [-1.0,-0.5,0.0,0.5,1.0]
 dadosQuestoes = leituraDados('questoes.txt')
 print (probabilidadeAcertoAlunoJQuestaoI(10,1))

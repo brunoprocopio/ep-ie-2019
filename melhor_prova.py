@@ -1,4 +1,5 @@
 # TODO escrever em arquivo
+# TESTE
 from funcoes import *
 
 def le_x_questoes(questoes, qtd):

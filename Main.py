@@ -27,37 +27,43 @@ def probabilidadeAcertoAlunoJQuestaoI(questao,aluno):
     return probAcerto
 
 
-def CriaProva (tamanho):
-    prova = []
-    while len(prova) < tamanho:
-        from random import randint
-        QuestaoSorteada = (randint(1, 100))
-        if QuestaoSorteada not in prova:
-            prova.append(QuestaoSorteada)
-    return prova
-
-
+def CriaProva(tamanho):
+    return random.sample(range(1,100), tamanho)
 
 
 tetaDoAluno = [-1.0,-0.5,0.0,0.5,1.0]
-TamanhoProva = [10,20,50,100]
 
 dadosQuestoes = leituraDados('questoes.txt')
 
 aluno1 = []
 aluno2 = []
-score_aluno1 = 0
-score_aluno2 = 0
-tamanho_escolhido = 20
-iteracoes = 1
+aluno3 = []
+aluno4 = []
+aluno5 = []
+score_aluno = np.zeros(5)
+score_final = np.zeros(5)
 
-for cont in range(0,iteracoes):
-    provacriada = (CriaProva(tamanho_escolhido))
-    for cont in range(0, tamanho_escolhido):
-        aluno1.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 5))
-        aluno2.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 4))
-        score_aluno1 = score_aluno1 + aluno1[cont]
-        score_aluno2 = score_aluno2 + aluno2[cont]
+#Determina a quantidade de questoes na prova
+tamanho_escolhido = 10
 
-print(score_aluno1/tamanho_escolhido)
-print(score_aluno2/tamanho_escolhido)
+iteracoes = 10000
+for cont in range(0, iteracoes):
+        provacriada = (CriaProva(tamanho_escolhido))
+        score_aluno = np.zeros(5)
+        for cont in range(0, tamanho_escolhido):
+            aluno1.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 1))
+            aluno2.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 2))
+            aluno3.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 3))
+            aluno4.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 4))
+            aluno5.append(probabilidadeAcertoAlunoJQuestaoI(provacriada[cont], 5))
+
+        for i in range(0, tamanho_escolhido):
+            score_aluno[0] += np.random.choice([0, 1], p=[1-aluno1[i], aluno1[i]])
+            score_aluno[1] += np.random.choice([0, 1], p=[1-aluno2[i], aluno2[i]])
+            score_aluno[2] += np.random.choice([0, 1], p=[1-aluno3[i], aluno3[i]])
+            score_aluno[3] += np.random.choice([0, 1], p=[1-aluno4[i], aluno4[i]])
+            score_aluno[4] += np.random.choice([0, 1], p=[1-aluno5[i], aluno5[i]])
+        indice_max = np.argmax(score_aluno)
+        score_final[indice_max] += 1
+
+print(score_final)

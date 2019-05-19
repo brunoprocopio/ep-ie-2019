@@ -1,4 +1,5 @@
 import math
+from random import randint
 
 def leitura_dados (local_arquivo):
     arquivo = open(local_arquivo, 'r')
@@ -21,3 +22,11 @@ def probabilidade_acerto_aluno_j_questao_i(teta, mapa, questao, aluno):
     prob_acerto =  ( e ) / (1 + e)
     
     return prob_acerto
+
+def cria_prova(tamanho):
+    prova = []
+    while len(prova) < tamanho:
+        questao = (randint(1, 100))
+        if questao not in prova:
+            prova.append(questao)
+    return prova

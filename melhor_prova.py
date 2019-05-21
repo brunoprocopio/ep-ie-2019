@@ -33,13 +33,6 @@ for tamanho_prova in [10, 20, 50]:
     for questao in melhor_prova:
         print(questao, end=' ')
     print()
-        
-    #for a in range(1, 6):
-    #    score = 0
-    #    for q in melhor_prova:
-    #        score = score + probabilidade_acerto_aluno_j_questao_i(tetas, dados, q, a);
-    #    print(score/tamanho_prova, end=' ')
-    #print()
     
     for a in range(1, 5):
         score_a = 0
